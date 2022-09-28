@@ -5,10 +5,13 @@
       <map>
         <entry key="..\:/Users/JBL/AndroidStudioProjects/myDataBase/app/src/main/res/drawable/my_list.xml" value="0.1" />
         <entry key="..\:/Users/JBL/AndroidStudioProjects/myDataBase/app/src/main/res/layout/activity_main.xml" value="0.18" />
-        <entry key="..\:/Users/JBL/AndroidStudioProjects/myDataBase/app/src/main/res/layout/fragment_list.xml" value="0.19384615384615383" />
+        <entry key="..\:/Users/JBL/AndroidStudioProjects/myDataBase/app/src/main/res/layout/fragment_list.xml" value="0.25" />
+        <entry key="..\:/Users/JBL/AndroidStudioProjects/myDataBase/app/src/main/res/layout/fragment_new_character.xml" value="0.1" />
         <entry key="..\:/Users/JBL/AndroidStudioProjects/myDataBase/app/src/main/res/layout/fragment_profile.xml" value="0.1" />
-        <entry key="..\:/Users/JBL/AndroidStudioProjects/myDataBase/app/src/main/res/layout/item_character.xml" value="0.196875" />
+        <entry key="..\:/Users/JBL/AndroidStudioProjects/myDataBase/app/src/main/res/layout/item_character.xml" value="0.1" />
+        <entry key="..\:/Users/JBL/AndroidStudioProjects/myDataBase/app/src/main/res/layout/item_menu.xml" value="0.19583333333333333" />
         <entry key="..\:/Users/JBL/AndroidStudioProjects/myDataBase/app/src/main/res/menu/bottom_bar.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/JBL/AndroidStudioProjects/myDataBase/app/src/main/res/xml/item_character.xml" value="0.19583333333333333" />
       </map>
     </option>
   </component>
