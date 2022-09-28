@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.utn.mydatabase.R
@@ -47,7 +48,8 @@ class ListFragment : Fragment() {
         recCharacter.adapter = adapter
 
         btnAdd.setOnClickListener {
-
+            var action = ListFragmentDirections.actionListFragmentToNewCharacterFragment()
+            v.findNavController().navigate(action)
         }
-       }
+    }
 }

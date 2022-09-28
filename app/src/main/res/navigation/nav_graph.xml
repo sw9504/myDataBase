@@ -8,10 +8,19 @@
         android:id="@+id/listFragment"
         android:name="com.utn.mydatabase.fragments.ListFragment"
         android:label="fragment_list"
-        tools:layout="@layout/fragment_list" />
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/action_listFragment_to_newCharacterFragment"
+            app:destination="@id/newCharacterFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.utn.mydatabase.fragments.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/newCharacterFragment"
+        android:name="com.utn.mydatabase.fragments.NewCharacterFragment"
+        android:label="fragment_new_character"
+        tools:layout="@layout/fragment_new_character" />
 </navigation>
