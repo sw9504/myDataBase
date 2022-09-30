@@ -10,6 +10,7 @@ import android.widget.Button
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.utn.mydatabase.R
 import com.utn.mydatabase.adapter.CharacterAdapter
 import com.utn.mydatabase.entities.Character
@@ -17,11 +18,10 @@ import com.utn.mydatabase.entities.Character
 class ListFragment : Fragment() {
     lateinit var v : View
     lateinit var recCharacter: RecyclerView
+    lateinit var adapter: CharacterAdapter
+    lateinit var btnAdd : Button
 
     var characterList : MutableList<Character> = mutableListOf()
-    lateinit var  adapter: CharacterAdapter
-
-    lateinit var btnAdd : Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,14 +29,13 @@ class ListFragment : Fragment() {
     ): View? {
         v =  inflater.inflate(R.layout.fragment_list, container, false)
 
+
+        // Si no pongo esto me desaparece la bottom bar al volver
+        val view = requireActivity().findViewById<BottomNavigationView>(R.id.bottomBar)
+        view.visibility = View.VISIBLE
+
         recCharacter = v.findViewById(R.id.recCharacter)
         btnAdd = v.findViewById(R.id.btnAdd)
-
-        characterList.add(Character(0,"Daemon Targaryen","https://elcomercio.pe/resizer/z02V2gqW5PXwtH4ZhOXazaNx4X0=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/P25L6EQZ35AKZO32DIQQ3JNSJM.jpg"))
-        characterList.add(Character(0,"Daemon Targaryen","https://elcomercio.pe/resizer/z02V2gqW5PXwtH4ZhOXazaNx4X0=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/P25L6EQZ35AKZO32DIQQ3JNSJM.jpg"))
-        characterList.add(Character(0,"Daemon Targaryen","https://elcomercio.pe/resizer/z02V2gqW5PXwtH4ZhOXazaNx4X0=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/P25L6EQZ35AKZO32DIQQ3JNSJM.jpg"))
-        characterList.add(Character(0,"Daemon Targaryen","https://elcomercio.pe/resizer/z02V2gqW5PXwtH4ZhOXazaNx4X0=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/P25L6EQZ35AKZO32DIQQ3JNSJM.jpg"))
-        characterList.add(Character(0,"Daemon Targaryen","https://elcomercio.pe/resizer/z02V2gqW5PXwtH4ZhOXazaNx4X0=/580x330/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/P25L6EQZ35AKZO32DIQQ3JNSJM.jpg"))
 
         return v
     }
