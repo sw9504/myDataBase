@@ -1,6 +1,5 @@
 package com.utn.mydatabase.fragments
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.utn.mydatabase.R
 import com.utn.mydatabase.adapter.CharacterAdapter
+import com.utn.mydatabase.database.appDatabase
+import com.utn.mydatabase.database.userDao
 import com.utn.mydatabase.entities.Character
 
 class ListFragment : Fragment() {
@@ -21,6 +22,9 @@ class ListFragment : Fragment() {
     lateinit var adapter: CharacterAdapter
     lateinit var btnAdd : Button
 
+    private var db: appDatabase? = null
+    private var userDao: userDao? = null
+
     var characterList : MutableList<Character> = mutableListOf()
 
     override fun onCreateView(
@@ -28,7 +32,6 @@ class ListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         v =  inflater.inflate(R.layout.fragment_list, container, false)
-
 
         // Si no pongo esto me desaparece la bottom bar al volver
         val view = requireActivity().findViewById<BottomNavigationView>(R.id.bottomBar)
@@ -42,6 +45,11 @@ class ListFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        db = appDatabase.getAppDataBase(v.context)
+        userDao = db?.userDao()
+
+        characterList = userDao?.loadAllCharacters() as MutableList<Character>
+
         adapter = CharacterAdapter(characterList)
         recCharacter.layoutManager = LinearLayoutManager(requireContext())
         recCharacter.adapter = adapter

@@ -7,6 +7,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.utn.mydatabase.entities.Character
 
+
 @Database(entities = [Character::class], version = 1, exportSchema = false)
 
 public  abstract class appDatabase : RoomDatabase() {
@@ -23,7 +24,7 @@ public  abstract class appDatabase : RoomDatabase() {
                         context.applicationContext,
                         appDatabase::class.java,
                         "myDB"
-                    ).allowMainThreadQueries().build()
+                    ).allowMainThreadQueries().build() // No es lo mas recomendable que se ejecute en el mainthread
                 }
             }
             return INSTANCE
