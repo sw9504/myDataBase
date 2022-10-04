@@ -1,27 +1,28 @@
 package com.utn.mydatabase.fragments
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import com.utn.mydatabase.R
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.utn.mydatabase.R
 import com.utn.mydatabase.database.appDatabase
 import com.utn.mydatabase.database.userDao
+import com.utn.mydatabase.entities.Character
 
-class NewCharacterFragment : Fragment() {
+class ExpandedFragment : Fragment() {
     lateinit var v : View
-    lateinit var inputName : EditText
-    lateinit var inputUrl : EditText
-    lateinit var btnAdd : Button
+
+    lateinit var characterName : TextView
+    lateinit var btnEdit : Button
+    lateinit var btnDelete : Button
+    lateinit var img : ImageView
 
     private var db: appDatabase? = null
     private var userDao: userDao? = null
@@ -30,30 +31,32 @@ class NewCharacterFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        v =  inflater.inflate(R.layout.fragment_new_character, container, false)
+        v = inflater.inflate(R.layout.fragment_expanded, container, false)
 
         val view = requireActivity().findViewById<BottomNavigationView>(R.id.bottomBar)
         view.visibility = View.GONE
 
-        inputName = v.findViewById(R.id.inputName)
-        inputUrl = v.findViewById(R.id.inputUrl)
-        btnAdd = v.findViewById(R.id.btnDBAdd)
+        characterName = v.findViewById(R.id.characterName)
+        btnEdit = v.findViewById(R.id.btnEdit)
+        btnDelete = v.findViewById(R.id.btnDelete)
+        img = v.findViewById(R.id.characterImg)
 
         return v
     }
 
     override fun onStart() {
         super.onStart()
+        var characterId = ExpandedFragmentArgs.fromBundle(requireArguments()).characterId
+
         db = appDatabase.getAppDataBase(v.context)
         userDao = db?.userDao()
 
-        btnAdd.setOnClickListener {
-            val name = inputName.text
-            val url = inputUrl.text
+        var character = userDao?.getCharacter(characterId) as Character
 
-            userDao?.addCharacter(name.toString(),url.toString())
-            v.findNavController().navigateUp()
-        }
+        characterName.text = character.name
 
+        Glide.with(requireContext())
+            .load(character.imgAvatar)
+            .into(img)
     }
 }

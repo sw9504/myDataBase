@@ -11,4 +11,7 @@ public interface userDao {
 
     @Query("INSERT INTO users (name, imgAvatar) VALUES (:name, :imgAvatar)")
     fun addCharacter(name : String, imgAvatar : String)
+
+    @Query("SELECT * FROM users WHERE id = :id")
+    fun getCharacter(id : Int) : Character?
 }

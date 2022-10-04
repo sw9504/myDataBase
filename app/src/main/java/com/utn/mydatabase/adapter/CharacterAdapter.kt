@@ -5,12 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.utn.mydatabase.R
 import com.utn.mydatabase.entities.Character
 
-class CharacterAdapter(private var characterList : MutableList <Character>) : RecyclerView.Adapter<CharacterAdapter.CharacterHolder> (){
+class CharacterAdapter(private var characterList : MutableList <Character>,
+                        private var onClick : (Int) -> Unit) : RecyclerView.Adapter<CharacterAdapter.CharacterHolder> (){
 
     class CharacterHolder (v: View) : RecyclerView.ViewHolder(v) {
         private var view: View
@@ -32,6 +34,10 @@ class CharacterAdapter(private var characterList : MutableList <Character>) : Re
                 .circleCrop()
                 .into(imgCircle)
         }
+
+        fun getCard () : CardView {
+            return view.findViewById(R.id.cardInstrument)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterHolder {
@@ -42,6 +48,10 @@ class CharacterAdapter(private var characterList : MutableList <Character>) : Re
     override fun onBindViewHolder(holder: CharacterHolder, position: Int) {
         holder.setName(characterList[position].name)
         holder.setImg(characterList[position].imgAvatar)
+
+        holder.getCard().setOnClickListener {
+            onClick(position)
+        }
     }
 
     override fun getItemCount(): Int {

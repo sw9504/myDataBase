@@ -50,7 +50,10 @@ class ListFragment : Fragment() {
 
         characterList = userDao?.loadAllCharacters() as MutableList<Character>
 
-        adapter = CharacterAdapter(characterList)
+        adapter = CharacterAdapter(characterList) { position ->
+            var action = ListFragmentDirections.actionListFragmentToExpandedFragment(characterList[position].id)
+            v.findNavController().navigate(action)
+        }
         recCharacter.layoutManager = LinearLayoutManager(requireContext())
         recCharacter.adapter = adapter
 

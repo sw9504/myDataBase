@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_listFragment_to_newCharacterFragment"
             app:destination="@id/newCharacterFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_expandedFragment"
+            app:destination="@id/expandedFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -23,4 +26,13 @@
         android:name="com.utn.mydatabase.fragments.NewCharacterFragment"
         android:label="fragment_new_character"
         tools:layout="@layout/fragment_new_character" />
+    <fragment
+        android:id="@+id/expandedFragment"
+        android:name="com.utn.mydatabase.fragments.ExpandedFragment"
+        android:label="fragment_expanded"
+        tools:layout="@layout/fragment_expanded" >
+        <argument
+            android:name="characterId"
+            app:argType="integer" />
+    </fragment>
 </navigation>
