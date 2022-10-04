@@ -14,4 +14,10 @@ public interface userDao {
 
     @Query("SELECT * FROM users WHERE id = :id")
     fun getCharacter(id : Int) : Character?
+
+    @Query("DELETE FROM users WHERE id = :id")
+    fun deleteCharacter(id : Int)
+
+    @Query("UPDATE users SET name = :name, imgAvatar = :imgAvatar WHERE id = :id")
+    fun updateCharacter(id : Int, name : String, imgAvatar : String)
 }
